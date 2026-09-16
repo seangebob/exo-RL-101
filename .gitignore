@@ -1,0 +1,36 @@
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Generated outputs from the exercises
+*.png
+training_curve.png
+pytorch_basics_result.png
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor / OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environment variables / secrets
+.env
+
+# Submission zip (don't commit your own submission artifact)
+*.zip
