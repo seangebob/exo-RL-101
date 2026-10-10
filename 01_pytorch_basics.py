@@ -42,16 +42,6 @@ class LineModel(nn.Module):
         self.linear = nn.Linear(1, 1)
 
     def forward(self, x):
-        # `forward` is where you describe what the model does to its
-        # input. We only have one layer, self.linear (defined above), and
-        # we want to run `x` through it and send back whatever it outputs.
-        #
-        # A layer is called just like a function: you put your input
-        # inside parentheses right after its name (see the cheat sheet's
-        # "Calling a layer or model" section for the general pattern).
-        #
-        # TODO 1: replace the line below with a `return` statement that
-        # calls self.linear on x and returns the output
         return self.linear(x)
 
 
