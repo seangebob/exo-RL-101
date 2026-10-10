@@ -91,7 +91,12 @@ def compute_returns(rewards, gamma):
 
     # Hint: `range(len(rewards) - 1, -1, -1)` iterates backward.
 
-    raise NotImplementedError
+    running_total = 0.0
+    returns = [0.0] * len(rewards)
+
+    for t in range (len(rewards) - 1, -1, -1):
+        running_total = rewards[t] + gamma * running_total
+        returns[t] = running_total
 
     returns = torch.tensor(returns, dtype=torch.float32)
 
@@ -137,7 +142,9 @@ def select_action(policy, state):
     #     action = distribution.sample()
     #     log_prob = distribution.log_prob(action)
 
-    raise NotImplementedError
+    distribution = torch.distributions.Categorical(probs)
+    action = distribution.sample()
+    log_prob = distribution.log_prob(action)
 
     return action.item(), log_prob
 
@@ -187,7 +194,7 @@ def train():
         #
         # For each timestep, the loss is:
         #
-        #     loss_t = -log_prob[t] * return[t]
+        #     loss_t`Ω = -log_prob[t] * return[t]
         #
         # A high return encourages the policy to increase the probability
         # of that action. A low return pushes the policy in the opposite
@@ -215,7 +222,11 @@ def train():
         #    `policy_loss` for the episode.
 
         policy_loss = None
-        raise notimplementederror
+        losses = []
+        for log_prob, ret in zip(log_probs, returns):
+            losses.append(-log_prob * ret)
+        policy_loss = torch.stack(losses).sum()
+
 
         # 6. Clear gradients from the previous training step.
         optimizer.zero_grad()
